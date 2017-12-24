@@ -1,0 +1,20 @@
+topic-01：docker客户端
+	我们可以直接输入docker命令来查看docker客户端的所有命令选项
+	docker
+
+	可以通过命令docker command --help深入了解docker命令使用方法
+
+	docker stats --help
+
+topic-02:运行一个web应用
+	#我们在docker容器中运行一个python flask应用来运行一个web应用
+	docker run -d -P training/webapp python app.py
+	
+	参数说明：
+	-d: 让容器在后台运行
+	-P：将容器内部使用的网络端口映射到我们使用的主机上
+
+topic-03：查看web应用容器
+	docker ps
+	
+

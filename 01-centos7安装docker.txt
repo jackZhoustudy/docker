@@ -1,0 +1,30 @@
+docker要求centos系统的内核版本高于3.10
+topic-01:使用yum安装docker
+	a.查看centos的版本
+	uname -r
+	
+	b.安装docker
+	yum -y install docker
+
+	c.启动docker
+	systemctl start docker.service
+
+	d.测试运行hello-world
+	docker run hello-world
+
+如果上述方法安装不成功，请尝试下面这种方式
+先移除yum安装的docker：
+	yum remove docker #移除安装的docker
+	yum remove docker-selinux 
+topic-02:使用脚本安装docker
+	a.确保yum更新到最新
+	sudo yum update
+
+	b.执行docker安装脚本
+	curl -fsSL https://get.docker.com | sh
+
+	c.启动docker
+	systemctl start docker.service
+	
+	d.验证docker是否安装成功
+	sudo docker run hello-world
