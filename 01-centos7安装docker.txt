@@ -3,25 +3,48 @@ topic-01:使用yum安装docker
 	a.查看centos的版本
 	uname -r
 	
-	b.安装docker
-	yum -y install docker
+	b.移除旧的版本
+	sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+	
+	c.安装一些必要的系统工具
+	yum -y install yum-utils device-mapper-persistent-data lvm2
+	
+	d.添加软件源信息
+	yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-	c.启动docker
+	e.更新yum缓存
+	yum makecache fast
+	
+	f.安装docker-ce
+	yum -y install docker-ce
+
+	g.启动docker
 	systemctl start docker.service
 
-	d.测试运行hello-world
+	h.测试运行hello-world
 	docker run hello-world
 
 如果上述方法安装不成功，请尝试下面这种方式
 先移除yum安装的docker：
 	yum remove docker #移除安装的docker
 	yum remove docker-selinux 
+
 topic-02:使用脚本安装docker
 	a.确保yum更新到最新
 	sudo yum update
 
 	b.执行docker安装脚本
-	curl -fsSL https://get.docker.com | sh
+	curl -fsSL https://get.docker.com -o get-docker.sh
+	sudo sh get-docker.sh
 
 	c.启动docker
 	systemctl start docker.service
