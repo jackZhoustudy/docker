@@ -15,6 +15,26 @@ topic-02:运行一个web应用
 	-P：将容器内部使用的网络端口映射到我们使用的主机上
 
 topic-03：查看web应用容器
-	docker ps
+	docker ps #查看正在运行的容器
 	
+	我们还可以用netstat -ntlp来查看所有的进程，我们可以发现docker开放了5000端口映射到主机端口32768(不是固定的端口号，具体看打印出来的信息)，
+	这时我们通过浏览器访问WEB应用，在本地浏览器输入192.168.56.101:32768(ip:端口号)，看到打印出hello world！
+
+topic-04：查看容器端口的映射情况
+	docker port 进程id #进程id可以通过docker ps查看
+	
+	docker top 进程id #查看容器内部运行的进程
+
+topic-05:检查web应用程序
+	docker inspect 进程id #查看docker底层的信息，
+
+topic-06：停止web应用容器
+	docker stop 进程id
+
+topic-07：重启web应用容器
+	docker start 进程id
+
+topic-08：移除web应用容器
+	docker rm 进程id
+
 
