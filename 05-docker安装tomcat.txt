@@ -5,6 +5,9 @@ docker search tomcat
 #docker安装tomcat(拉取Apache官方镜像)
 docker pull tomcat
 
+topic-02:运行tomcat镜像
+	
+docker run -p 8080:8081 -v $PWD/webapps:/usr/local/tomcat/webapps -v $PWD/logs:/usr/local/tomcat/logs -d tomcat  
 
 
 

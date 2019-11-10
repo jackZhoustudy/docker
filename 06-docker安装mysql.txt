@@ -1,0 +1,26 @@
+topic-01：docker安装mysql
+	docker search mysql
+
+	#我们安装mysql5.7的版本
+	docker pull mysql:5.7
+
+	#下载完成后我们查看本地docker镜像
+	docker images | grep mysql
+
+topic-02:使用mysql镜像
+	a.我们先在宿主机上创建几个文件夹用于存放mysql的配置文件，数据以及日志
+	mkdir -p /data/developer/docker/mysql/data
+	mkdir -p /data/developer/docker/mysql/conf
+	mkdir -p /data/developer/docker/mysql/logs
+	
+	b.运行容器
+	#我们先进到文件夹
+	cd /data/developer/docker/mysql
+	#再运行容器
+docker run -p 3307:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+	
+	#命令说明
+	-p 3307:3306	端口映射到宿主机的端口是3307，容器内的端口是3306
+	-v $PWD/conf:/etc/mysql/conf.d	挂载配置文件目录 $PWD表示当前目录，所以我们要先进到/data/developer/docker/mysql目录下运行这条命令
+	-v $PWD/logs:/logs	挂载日志文件到容器的/logs
+	-v $PWD/data:/var/lib/mysql	挂载数据
