@@ -23,5 +23,11 @@ topic-03:httpd镜像
 	
 	docker run httpd #运行httpd镜像
 
-
-
+topic-04:docker镜像的备份和导入
+	语法：docker save -o <save image to path> <image name>
+	#我们将mysql5.7进行打包
+	docker save -o /data/developer/docker/mysql5.7.docker.tar mysql:5.7
+	
+	#镜像的导入
+	#语法：docker load -i <path to image tar file>
+	docker load -i /data/developer/docker/mysql5.7.docker.tar
