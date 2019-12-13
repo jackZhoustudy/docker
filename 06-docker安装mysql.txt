@@ -24,3 +24,16 @@ docker run -p 3307:3306 -v $PWD/conf:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PW
 	-v $PWD/conf:/etc/mysql/conf.d	挂载配置文件目录 $PWD表示当前目录，所以我们要先进到/data/developer/docker/mysql目录下运行这条命令
 	-v $PWD/logs:/logs	挂载日志文件到容器的/logs
 	-v $PWD/data:/var/lib/mysql	挂载数据
+
+topic-03:宿主机上安装mysql的客户端
+	#主要是用户在宿主机上用命令连接mysql
+	yum -y install mysql
+	
+	#连接mysql
+	mysql -uroot -p -P3307
+
+	#报错如下：
+	ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+
+	#加上mysql主机地址
+	mysql -uroot -h 127.0.0.1 -p -P3307
